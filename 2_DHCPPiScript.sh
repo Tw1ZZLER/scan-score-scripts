@@ -10,6 +10,7 @@ subnet 192.168.0.0 netmask 255.255.255.0 {\
  option domain-name "overheadcam.local";\
 }' /etc/dhcp/dhcpd.conf
 
+# TODO: JUST COPY FILE FROM REPOSITORY TO DIRECTORY, no need for finding and replacing lines.
 touch '/etc/NetworkManager/system-connections/Wired connection 1.nmconnection'
 
 # This is editing what would normally be handled by the GUI network configuration
