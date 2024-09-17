@@ -10,9 +10,17 @@ subnet 192.168.0.0 netmask 255.255.255.0 {\
  option domain-name "overheadcam.local";\
 }' /etc/dhcp/dhcpd.conf
 
-# Getting around using GUI for configuration by copying Wired connection file
-# to NetworkManager directory
-cd ~/scan-score-scripts
-cp './Wired connection 1.nmconnection' '/etc/NetworkManager/system-connections/Wired connection 1.nmconnection'
+
+
+# Getting around using GUI for NetworkManager configuration
+# by using awesome built-in CLI tools
+nmcli connection add con-name "Wired connection 1" type ethernet
+
+# This is editing what would normally be handled by the GUI network configuration
+# We are doing it this way so we don't need to use the desktop.
+sed -i '/\[ipv4\]/{n; c\address1=192.168.0.1/24,192.168.0.1
+n; i
+}' '/etc/NetworkManager/system-connections/Wired connection 1.nmconnection'
+sed -i '/address1=192.168.0.1\/24,192.168.0.1/a method=manual' '/etc/NetworkManager/system-connections/Wired connection 1.nmconnection'
 
 sudo reboot now
