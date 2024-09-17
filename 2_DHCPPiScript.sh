@@ -18,9 +18,9 @@ nmcli connection add con-name "Wired connection 1" type ethernet
 
 # This is editing what would normally be handled by the GUI network configuration
 # We are doing it this way so we don't need to use the desktop.
-sed -i '/\[ipv4\]/{n; c\address1=192.168.0.1/24,192.168.0.1
+sudo sed -i '/\[ipv4\]/{n; c\address1=192.168.0.1/24,192.168.0.1
 n; i
 }' '/etc/NetworkManager/system-connections/Wired connection 1.nmconnection'
-sed -i '/address1=192.168.0.1\/24,192.168.0.1/a method=manual' '/etc/NetworkManager/system-connections/Wired connection 1.nmconnection'
+sudo sed -i '/address1=192.168.0.1\/24,192.168.0.1/a method=manual' '/etc/NetworkManager/system-connections/Wired connection 1.nmconnection'
 
 sudo reboot now
